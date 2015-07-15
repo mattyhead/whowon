@@ -69,8 +69,9 @@
               <td class="cand-votes" colspan="2">
                 <div class="chart">
                     <div style="width: <%= candidates[i].percentage %>%">
-                      <%= candidates[i].percentage %>%
+                      <%= candidates[i].percentage > 12 ? candidates[i].percentage + '%' : '&nbsp;'  %>
                     </div>
+                    <span style="left:<%= candidates[i].percentage < 3 ? 3.5 : candidates[i].percentage+.5 %>%;"><%= candidates[i].percentage <= 12 ? candidates[i].percentage + '%' : '' %></span>
                 </div>
             </td>
           </tr>

@@ -35,7 +35,7 @@ h1 {
 .chart.header div,
 .chart.header p {
   font-size: 1.2em;
-  font-family: sans-serif;-size
+  font-family: sans-serif;
 }
 
 .chart p {
@@ -60,18 +60,26 @@ li.party-dem h2, li.party-rep h2 {
   font-weight: bold;
 }
 
-li.party-dem div.chart div{
-	background-color: #027EA4;
+li.party-dem div.chart div, li.party-rep div.chart div {
   padding: .5em;
   font-weight: bold;
+}
+
+li.party-dem div.chart div{
+	background-color: #027EA4;
 }
 
 li.party-rep div.chart div{
 	background-color: #E4002B;	
-  padding: .5em;
-  font-weight: bold;
 }
 
+li.party-dem div.chart span, li.party-rep div.chart span {
+  right:auto;
+  position:relative;
+  padding: .5em;
+  font-weight: bold;
+  line-height: 2em;
+}
 table {
   width: 100%;
 }
