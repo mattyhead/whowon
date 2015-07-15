@@ -1,4 +1,4 @@
-var ENDPOINT = 'http://45.55.199.147/results.json',
+var ENDPOINT = 'https://whowon-mattyhead.c9.io/results.json',
   INTERVAL = 30000;
   template = _.template($('#tmpl-race').html());
 
