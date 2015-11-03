@@ -32,24 +32,23 @@
     <!-- End Google Tag Manager -->
     <div class="row">
       <div class="large-12 columns">
-        <h1>Who Won Philly</h1>
-        <p>Automatically refreshes every 30 seconds from <a href="http://phillyelectionresults.com" target="_blank">phillyelectionresults.com</a>.
-        Built at <a href="http://codeforphilly.org">Code for Philly</a>.</p>
-        <div class="social">
+<!--       <h1>Who Won Philly</h1>-->
+        <p>Attractive election results, built at <a href="http://codeforphilly.org" target="_other_site">Code for Philly</a>. Originally at <a href="http://www.whowonphilly.com" target="_other_site">WhoWonPhilly.com</a>.</p>
+<p>Automatically refreshes every 45 seconds from <a href="http://phillyelectionresults.com"  target="_other_site">phillyelectionresults.com</a>.</p>
+<!--         <div class="social">
           <a href="https://twitter.com/share" class="twitter-share-button" data-text="Who Won Philly: Live election results in Philadelphia" data-via="CodeforPhilly" data-size="large" data-dnt="true">Tweet</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        </div>
-        <div class="alert-box warning">The data below is as of Weds, May 20th, 2015 at 10:15 AM EDT.</div>
+        </div> -->
+      <!--   <div id="timestamp" class="alert-box warning">The data below is as of Weds, May 20th, 2015 at 10:15 AM EDT.</div> -->
         <div>
           <ul class="medium-block-grid-2" id="main"></ul>
       
         </div>
       </div>
     </div>
-    
     <script type="text/template" id="tmpl-race">
-      <li class="party-<%= party %>">
-        <h2><%= race %></h2>
+      <li class="race party-<%= partyStyle(party) %>">
+        <h2><%= r[race] %></h2>
         <div class="chart header">
             <p><%= progress %>% Precincts Completed</p>
             <div style="width: <%= progress %>%"><%= progress %>% Precincts Completed</div>
@@ -59,20 +58,57 @@
           <tr>
             <th>Candidate</th>
             <th>Votes</th>
-          <% for(var i = 0; i < candidates.length; i++) { %>
+          <%  
+            for(var i = 0; i < candidates.length; i++) { 
+            j++;
+            %>
           <tr>
-            <td><%= candidates[i].name %></td>
+            <td><%= c[candidates[i].name] %></td>
             <td><%= candidates[i].votes %></td>
           </tr>
-          <% if (i != (candidates.length - 1)) { %>
+          <% if (i != (candidates.length)) { %>
           <tr>
-              <td class="cand-votes" colspan="2">
-                <div class="chart">
-                    <div style="width: <%= candidates[i].percentage %>%">
-                      <%= candidates[i].percentage > 12 ? candidates[i].percentage + '%' : '&nbsp;'  %>
-                    </div>
-                    <span style="left:<%= candidates[i].percentage < 3 ? 3.5 : candidates[i].percentage+.5 %>%;"><%= candidates[i].percentage <= 12 ? candidates[i].percentage + '%' : '' %></span>
+            <td class="cand-votes party-<%= partyStyle(party)==='ind'?partyStyle(candidates[i].party):partyStyle(party) %>" colspan="2">
+              <div class="chart">
+                <div style="width: <%= candidates[i].percentage %>%">
+                  <%= candidates[i].percentage > 12 ? candidates[i].percentage + '%' : '&nbsp;'  %>
                 </div>
+                <span style="left:<%= candidates[i].percentage < 3 ? 3.5 : candidates[i].percentage+.5 %>%;">
+                  <%= candidates[i].percentage <= 12 ? candidates[i].percentage + '%' : '' %>
+                </span>
+              </div>
+              <div class="all-wards" data-candidate="<%= j %>">show per-ward voting detail...</div>
+            </td>
+          </tr>
+          <tr class="ward-data hidden" id="candidate-<%= j %>">
+            <td colspan="2">
+              <table>
+            <% 
+            
+            for(ward in v) {
+              // we know v[ward] exists.  don't test.
+              if (typeof v[ward][race] !== 'undefined' && typeof v[ward][race][candidates[i].name] !== 'undefined') {  
+                var wd = v[ward][race][candidates[i].name][0];
+              %>
+                <tr>
+                  <td>Ward <%= ward %></td> 
+                  <td><%= wd.votes %></td>
+                </tr>
+                <tr>
+                  <td class="cand-votes party-<%= partyStyle(party)==='ind'?partyStyle(candidates[i].party):partyStyle(party) %>" colspan="2">
+                    <div class="chart">
+                      <div style="width: <%= wd.perc %>%">
+                        <%= wd.prec > 12 ? wd.prec + '%' : '&nbsp;'  %>
+                      </div>
+                      <span style="left:<%= wd.perc < 3 ? 3.5 : wd.perc+.5 %>%;">
+                      <%= wd.perc <= 12 ? wd.perc + '%' : '' %>
+                      </span>
+                    </div>                
+                  </td>
+                </tr>
+            <% } %>
+            <% } %>
+              </table>
             </td>
           </tr>
           <% } %>
@@ -85,5 +121,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.1.6/nprogress.min.js"></script>
     <script src="js/main.js"></script>
+
   </body>
 </html>
