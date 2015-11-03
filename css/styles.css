@@ -9,7 +9,7 @@ h1 {
 }
 
 .graph-label {
-	float: left;
+  float: left;
 }
 
 .chart {
@@ -32,21 +32,19 @@ h1 {
   height: 2.35em;
 }
 
-.chart.header div,
-.chart.header p {
+.chart.header div, .chart.header p {
   font-size: 1.2em;
   font-family: sans-serif;
 }
 
-.chart p {
+.chart p, .chart span {
   position: absolute;
   font: 1em sans-serif;
   text-align: right;
   line-height: 1em;
   font-weight: bold;
   color: #111;
-  padding: .5em;  
-  font-weight: bold;
+  padding: .5em;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -55,31 +53,64 @@ h1 {
   padding-top: 0;
 }
 
-li.party-dem h2, li.party-rep h2 {
+.all-wards {
+  font: .9em sans-serif;
+}
+
+.all-wards:hover {
+  cursor: pointer;
+}
+
+.ward-data {
+  font: .8em sans-serif;
+}
+
+li.party-dem h2, li.party-rep h2, li.party- h2, li.party-ind h2 {
   font-size: 1.5em;
   font-weight: bold;
 }
 
-li.party-dem div.chart div, li.party-rep div.chart div {
+li.race div.chart div, li.race div.chart span, tr.ward-data div.chart div, tr.ward-data div.chart span, tr.cand-votes div.chart div, tr.cand-votes div.chart span {
   padding: .5em;
   font-weight: bold;
 }
 
-li.party-dem div.chart div{
-	background-color: #027EA4;
+li.party-dem div.chart>div, td.cand-votes.party-dem div.chart div {
+  background-color: #027EA4;
 }
 
-li.party-rep div.chart div{
-	background-color: #E4002B;	
+li.party- div.chart>div, td.cand-votes.party- div.chart div {
+  background-color: #999;
 }
 
-li.party-dem div.chart span, li.party-rep div.chart span {
-  right:auto;
-  position:relative;
-  padding: .5em;
-  font-weight: bold;
+li.party-rep div.chart>div, td.cand-votes.party-rep div.chart div {
+  background-color: #E4002B;
+}
+
+li.party-all div.chart>div {
+  background-color: #999;
+}
+
+td.cand-votes.party-ind div.chart div {
+  background-color: #2FC62A;
+}
+
+td.cand-votes.party- div.chart div {
+  background-color: #999;
+}
+
+li div.chart span, li div.chart span {
+  right: auto;
+  position: relative;
   line-height: 2em;
+  /* left: is defined dynamically inline */
 }
+
 table {
   width: 100%;
+}
+
+.hidden {
+  display: none;
+  visibility: none;
 }
