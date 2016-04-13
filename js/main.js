@@ -1,5 +1,5 @@
 var ENDPOINT = 'http://www.philadelphiavotes.com/whowon/results.json',
-  INTERVAL = 45000;
+  INTERVAL = 900000;
   template = _.template($('#tmpl-race').html()),
 // implement terrible, terrible scope cludgees, and feel much shame.
   j = 0, timeToRefresh = 0,
@@ -12,7 +12,7 @@ var refresh = function() {
   return $.getJSON(ENDPOINT, function(data) {
     NProgress.done(); // hide loading indicator
     // Apply parsing/transformations to each candidate
-    _.map(data.city['Race Results'].candidates, function(candidate) {
+    _.map(data.city['results'].candidates, function(candidate) {
       candidate.percentage = parseFloat(candidate.percentage);
     });
 
@@ -42,7 +42,7 @@ var refresh = function() {
     container.empty();
 
     // For each city-level race
-    [].forEach.call(data.city['Race Results'], function(race) {
+    [].forEach.call(data.city['results'], function(race) {
       // Sort candidates by percentage
       race.candidates = _.sortBy(race.candidates, function(candidate) { return -candidate.percentage; });
       // Append the race to the container using the template
@@ -56,6 +56,7 @@ var refresh = function() {
     //console.log(timeToRefresh, data.timestamp);
     window.setTimeout(refresh, timeToRefresh);
   });
+
 };
 
 // long delegation, since these are js-rendered elements, and because little lord baby jesus pefers long delegation
