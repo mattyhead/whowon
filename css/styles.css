@@ -2,35 +2,47 @@ h1 {
   font-family: 'Oxygen', sans-serif;
   font-weight: 700;
 }
+
 .chart {
   margin: 0;
   shape-rendering: crispEdges;
 }
+
 .graph-label {
   float: left;
 }
+
 .chart {
   position: relative;
   height: 2em;
-  background-color: Gainsboro;
+  background-color: #efefef;
 }
+
 .chart div {
-  position: absolute;
-  font: 1em sans-serif;
-  text-align: right;
-  line-height: 1em;
-  color: white;
-  overflow: hidden;
-  white-space: nowrap;
+  height: 100% !important;
+  vertical-align: middle !important;
+  position: absolute !important;
+  font: 1em sans-serif !important;
+  text-align: right !important;
+  line-height: 1em !important;
+  color: white !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  padding: .5em;
 }
+
 .chart.header {
-  height: 2.35em;
+  height: 2.35em !important;
 }
-.chart.header div, .chart.header p {
+
+.chart.header div,
+.chart.header p {
   font-size: 1.2em;
   font-family: sans-serif;
 }
-.chart p,.chart span  {
+
+.chart p,
+.chart span {
   position: absolute;
   font: 1em sans-serif;
   text-align: right;
@@ -41,58 +53,90 @@ h1 {
   overflow: hidden;
   white-space: nowrap;
 }
+
 .cand-votes {
   padding-top: 0;
 }
+
 .all-wards {
   font: .9em sans-serif;
 }
+
 .all-wards:hover {
   cursor: pointer;
 }
+
 .ward-data {
   font: .8em sans-serif;
 }
-li.party-dem h2, li.party-rep h2 , li.party- h2 , li.party-ind h2 {
+
+li.party-dem h2,
+li.party-rep h2,
+li.party- h2,
+li.party-ind h2 {
   font-size: 1.5em;
   font-weight: bold;
 }
-li.race div.chart div, li.race div.chart span, tr.ward-data div.chart div, tr.ward-data div.chart span, tr.cand-votes div.chart div, tr.cand-votes div.chart span {
+
+li.race div.chart div,
+li.race div.chart span,
+tr.ward-data div.chart div,
+tr.ward-data div.chart span,
+tr.cand-votes div.chart div,
+tr.cand-votes div.chart span {
   padding: .5em;
   font-weight: bold;
 }
-li.party-dem div.chart>div, td.cand-votes.party-dem div.chart div {
+
+li.party-dem div.chart>div,
+td.cand-votes.party-dem div.chart div {
   background-color: #027EA4;
 }
-li.party- div.chart>div, td.cand-votes.party- div.chart div {
-  background-color: #999;
-}
-li.party-ind div.chart>div, td.cand-votes.party- div.chart div {
-  background-color: #666;
-}
 
-li.party-rep div.chart>div, td.cand-votes.party-rep div.chart div {
-  background-color: #E4002B;
-}
-li.party-all div.chart>div {
-  background-color: #666;
-}
-td.cand-votes.party-ind div.chart div {
-  background-color: #2FC62A;
-} 
+li.party- div.chart>div,
 td.cand-votes.party- div.chart div {
   background-color: #999;
 }
-li div.chart span, li div.chart span {
+
+li.party-ind div.chart>div,
+td.cand-votes.party- div.chart div {
+  background-color: #666;
+}
+
+li.party-rep div.chart>div,
+td.cand-votes.party-rep div.chart div {
+  background-color: #E4002B;
+}
+
+li.party-all div.chart>div {
+  background-color: #666;
+}
+
+td.cand-votes.party-ind div.chart div {
+  background-color: #2FC62A;
+}
+
+td.cand-votes.party- div.chart div {
+  background-color: #999;
+}
+
+li div.chart span,
+li div.chart span {
   right: auto;
   position: relative;
-  line-height: 2em;
-  /* left: is defined dynamically inline */
+  line-height: 2em;  /* left: is defined dynamically inline */
 }
+
 table {
   width: 100%;
 }
-.hidden {
+
+tr.hidden,
+div.hidden {
   display: none;
   visibility: none;
+}
+
+h2.modal-title {
+  font-size: 1.5em;
 }

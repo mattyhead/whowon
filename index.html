@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <title>Who Won Philly??</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.1.6/nprogress.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link href='http://fonts.googleapis.com/css?family=Oxygen:400,700' rel='stylesheet' type='text/css'>
@@ -15,7 +14,7 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.philadelphiavotes.com/whowon/img/og-image.png"/>
     <link rel="image_src" href="https://www.philadelphiavotes.com/whowon/img/og-image.png"/>
-    <meta property="og:description" content="Tracking real time election results in Philadelphia" />  
+    <meta property="og:description" content="Tracking real time election results in Philadelphia" />
     <meta name="twitter:card" content="photo" />
     <meta name="twitter:site" content="@CodeforPhilly" />
     <meta name="twitter:creator" content="@CodeforPhilly" />
@@ -33,95 +32,71 @@
     <div class="row">
       <div class="large-12 columns">
         <p>Attractive election results, built at <a href="http://codeforphilly.org" target="_other_site">Code for Philly</a>. Originally at <a href="http://www.whowonphilly.com" target="_other_site">WhoWonPhilly.com</a>.</p>
-<p>Automatically refreshes every 15 minutes from <a href="http://phillyelectionresults.com"  target="_other_site">phillyelectionresults.com</a>.</p>
+        <p>Automatically refreshes every 15 minutes from <a href="http://phillyelectionresults.com"  target="_other_site">phillyelectionresults.com</a>.</p>
         <div>
-          <ul class="medium-block-grid-2" id="main"></ul>
-      
-        </div>
+        <ul class="medium-block-grid-2" id="main"></ul>
       </div>
     </div>
-    <script type="text/template" id="tmpl-race">
-      <li class="race party-<%= partyStyle(party) %>">
-        <h2><%= r[race] %></h2>
-        <div class="chart header">
-            <p><%= progress %>% Precincts Completed</p>
-            <div style="width: <%= progress %>%"><%= progress %>% Precincts Completed</div>
-           
-        </div>
-        <table>
-          <tr>
-            <th>Candidate</th>
-            <th>Votes</th>
-          <%  
-            for(var i = 0; i < candidates.length; i++) { 
-            j++;
-            %>
-          <tr>
-            <td><%= c[candidates[i].name] %></td>
-            <td><%= candidates[i].votes %></td>
-          </tr>
-          <% if (i != (candidates.length)) { %>
-          <tr>
-            <td class="cand-votes party-<%= partyStyle(party)==='ind'?partyStyle(candidates[i].party):partyStyle(party) %>" colspan="2">
-              <div class="chart">
-                <div style="width: <%= candidates[i].percentage %>%">
-                  <%= candidates[i].percentage > 12 ? candidates[i].percentage + '%' : '&nbsp;'  %>
-                </div>
-                <span style="left:<%= candidates[i].percentage < 3 ? 3.5 : candidates[i].percentage+.5 %>%;">
-                  <%= candidates[i].percentage <= 12 ? candidates[i].percentage + '%' : '' %>
-                </span>
+  </div>
+  <script type="text/template" id="tmpl-race" defer>
+  <li class="race party-<%= partyStyle(party) %>">
+    <h2><%= r[race] %></h2>
+    <div class="chart header">
+      <p><%= progress %>% Precincts Completed</p>
+      <div style="width: <%= progress %>%"><%= progress %>% Precincts Completed</div>
+    </div>
+    <table class="">
+      <tr>
+        <th>Candidate</th>
+        <th>Votes</th>
+        <% for(var i = 0; i < candidates.length; i++) { j++;%>
+        <tr>
+          <td><%= c[candidates[i].name] %></td>
+          <td><%= candidates[i].votes %></td>
+        </tr>
+        <% if (i != (candidates.length)) { %>
+        <tr>
+          <td class="cand-votes party-<%= partyStyle(party)==='ind'?partyStyle(candidates[i].party):partyStyle(party) %>" colspan="2">
+            <div class="chart">
+              <div style="width: <%= candidates[i].percentage %>%">
+                <%= candidates[i].percentage > 12 ? candidates[i].percentage + '%' : '&nbsp;'  %>
               </div>
-              <div class="all-wards" data-candidate="<%= j %>">show per-ward voting detail...</div>
-            </td>
-          </tr>
-          <tr class="ward-data hidden" id="candidate-<%= j %>">
-            <td colspan="2">
-              <table>
-            <% 
-            
-            for(ward in v) {
-              // we know v[ward] exists.  don't test.
-              if (typeof v[ward][race] !== 'undefined' && typeof v[ward][race][candidates[i].name] !== 'undefined') {  
-                var wd = v[ward][race][candidates[i].name][0];
-              %>
-                <tr>
-                  <td>Ward <%= ward %></td> 
-                  <td><%= wd.votes %></td>
-                </tr>
-                <tr>
-                  <td class="cand-votes party-<%= partyStyle(party)==='ind'?partyStyle(candidates[i].party):partyStyle(party) %>" colspan="2">
-                    <div class="chart">
-                      <div style="width: <%= wd.perc %>%">
-                        <%= wd.perc > 15 ? wd.perc + '%' : '&nbsp;'  %>
-                      </div>
-                      <span style="left:<%= wd.perc < 3 ? 3.5 : wd.perc+.5 %>%;">
-                      <%= wd.perc <= 15 ? wd.perc + '%' : '' %>
-                      </span>
-                    </div>                
-                  </td>
-                </tr>
-            <% } %>
-            <% } %>
-              </table>
-            </td>
-          </tr>
-          <% } %>
-          <% } %>
-        </table>
-      </li>
+              <span style="left:<%= candidates[i].percentage < 3 ? 3.5 : candidates[i].percentage+.5 %>%;">
+                <%= candidates[i].percentage <= 12 ? candidates[i].percentage + '%' : '' %>
+              </span>
+            </div>
+            <div class="all-wards" data-r="<%= race %>" data-ci="<%= candidates[i].name %>" data-cp="<%= candidates[i].party %>" data-p="<%= party %>">show per-ward voting detail...</div>
+          </td>
+        </tr>
+        <% } %>
+        <% } %>
+      </table>
+    </li>
     </script>
-    
+    <div id="ward-modal" class="reveal-modal" data-reveal aria-labelledby="ModalTitle-ward-modal" aria-hidden="true" role="dialog">
+      <h2 class="modal-title" id="ModalTitle-ward-modal"></h2>
+      <table class="modal-content">
+      </table>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+    <div id="cands-modal" class="reveal-modal" data-reveal aria-labelledby="ModalTitle-cands-modal" aria-hidden="true" role="dialog">
+      <h2 class="modal-title" id="ModalTitle-cands-modal"></h2>
+      <table class="modal-content">
+      </table>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.1.6/nprogress.min.js"></script>
     <script src="js/main.js"></script>
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-40891428-1', 'philadelphiavotes.com');
-      ga('send', 'pageview');
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-40891428-1', 'philadelphiavotes.com');
+    ga('send', 'pageview');
     </script>
   </body>
 </html>
