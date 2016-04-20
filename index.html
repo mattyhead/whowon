@@ -45,7 +45,9 @@
       <p><%= progress %>% Precincts Completed</p>
       <div style="width: <%= progress %>%"><%= progress %>% Precincts Completed</div>
     </div>
-    <table class="">
+
+    <span class="main-content">
+    <table>
       <tr>
         <th>Candidate</th>
         <th>Votes</th>
@@ -70,19 +72,19 @@
         </tr>
         <% } %>
         <% } %>
-      </table>
+      </table></span>
     </li>
     </script>
     <div id="ward-modal" class="reveal-modal" data-reveal aria-labelledby="ModalTitle-ward-modal" aria-hidden="true" role="dialog">
       <h2 class="modal-title" id="ModalTitle-ward-modal"></h2>
-      <table class="modal-content">
-      </table>
+      <span class="modal-content">
+      </span>
       <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
     <div id="cands-modal" class="reveal-modal" data-reveal aria-labelledby="ModalTitle-cands-modal" aria-hidden="true" role="dialog">
       <h2 class="modal-title" id="ModalTitle-cands-modal"></h2>
-      <table class="modal-content">
-      </table>
+      <span class="modal-content">
+      </span>
       <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

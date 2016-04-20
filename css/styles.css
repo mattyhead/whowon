@@ -120,7 +120,6 @@ td.cand-votes.party- div.chart div {
   background-color: #999;
 }
 
-li div.chart span,
 li div.chart span {
   right: auto;
   position: relative;
@@ -131,12 +130,55 @@ table {
   width: 100%;
 }
 
-tr.hidden,
-div.hidden {
-  display: none;
-  visibility: none;
+span.modal-content,
+span.main-content {
+  width: 100%;
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (max-height:1600px) {
+  span.modal-content,
+  span.main-content {
+    max-height: 1200px !important;
+  }
+
+}
+
+@media (max-height:1200px) {
+  span.modal-content,
+  span.main-content {
+    max-height: 800px !important;
+  }
+
+}
+
+@media (max-height:1000px) {
+  span.modal-content,
+  span.main-content {
+    max-height: 600px !important;
+  }
+
+}
+
+@media (max-height:600px) {
+  span.modal-content,
+  span.main-content {
+    max-height: 400px !important;
+  }
+
+}
+
+@media (max-height:400px) {
+  span.modal-content,
+  span.main-content {
+    max-height: 300px !important;
+  }
+
 }
 
 h2.modal-title {
-  font-size: 1.5em;
+  font-size: 1.2em;
+  font-weight: 700;
 }
