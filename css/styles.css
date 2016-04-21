@@ -178,7 +178,8 @@ span.main-content {
 
 }
 
-h2.modal-title {
+h2 {
   font-size: 1.2em;
   font-weight: 700;
+  line-height: 1.5em;
 }
