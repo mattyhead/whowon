@@ -85,7 +85,7 @@ $(document).on('click', 'div.all-wards', function() {
       var wd = v[ward][race][candidateId][0];
       content += '       <table><tr>';
       content += '        <td>Ward ' + ward + '</td>';
-      content += '        <td>' + wd.votes + '</td>';
+      content += '        <td class="right">' + wd.votes + '</td>';
       content += '      </tr>';
       content += '      <tr>';
       content += '        <td class="cand-votes party-' + (partyStyle(party) === 'ind' ? partyStyle(candidateParty) : partyStyle(party)) + '" colspan="2">';
@@ -118,7 +118,7 @@ $(document).on('click', 'div.all-cands', function() {
     var wd = v[ward][race][rwc][0];
     content += '      <table><tr>';
     content += '        <td>' + c[rwc] + '</td>';
-    content += '        <td>' + wd.votes + '</td>';
+    content += '        <td class="right">' + wd.votes + '</td>';
     content += '      </tr>';
     content += '      <tr>';
     content += '        <td class="cand-votes party-' + partyStyle(wd.party) + '" colspan="2">';

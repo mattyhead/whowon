@@ -39,7 +39,7 @@
     </div>
   </div>
   <script type="text/template" id="tmpl-race" defer>
-  <li class="race party-<%= partyStyle(party) %>">
+  <li class="large-12 columns race party-<%= partyStyle(party) %>">
     <h2><%= r[race] %></h2>
     <div class="chart header">
       <p><%= progress %>% Precincts Completed</p>
@@ -50,11 +50,11 @@
     <table>
       <tr>
         <th>Candidate</th>
-        <th>Votes</th>
+        <th class="right">Votes</th>
         <% for(var i = 0; i < candidates.length; i++) { j++;%>
         <tr>
           <td><%= c[candidates[i].name] %></td>
-          <td><%= candidates[i].votes %></td>
+          <td class="righ"><%= candidates[i].votes %></td>
         </tr>
         <% if (i != (candidates.length)) { %>
         <tr>
@@ -75,13 +75,13 @@
       </table></span>
     </li>
     </script>
-    <div id="ward-modal" class="reveal-modal" data-reveal aria-labelledby="ModalTitle-ward-modal" aria-hidden="true" role="dialog">
+    <div id="ward-modal" class="reveal-modal large-12" data-reveal aria-labelledby="ModalTitle-ward-modal" aria-hidden="true" role="dialog">
       <h2 class="modal-title" id="ModalTitle-ward-modal"></h2>
-      <span class="modal-content">
+      <span class="modal-content ">
       </span>
       <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
-    <div id="cands-modal" class="reveal-modal" data-reveal aria-labelledby="ModalTitle-cands-modal" aria-hidden="true" role="dialog">
+    <div id="cands-modal" class="reveal-modal large-12" data-reveal aria-labelledby="ModalTitle-cands-modal" aria-hidden="true" role="dialog">
       <h2 class="modal-title" id="ModalTitle-cands-modal"></h2>
       <span class="modal-content">
       </span>
