@@ -3,7 +3,7 @@ var ENDPOINT = 'http://philadelphiavotes.fortuit.us/whowon/results.full.json',
 template = _.template($('#tmpl-race').html()),
 // implement terrible, terrible scope cludgees, and feel much shame.
 j = 0, timeToRefresh = 0,
-v = d = p = r = c = t = cands = temp = [],
+v = d = p = r = c = t = [],
 partyStyle = {};
 
 var refresh = function() {
@@ -53,7 +53,6 @@ var refresh = function() {
         return -candidate.percentage;
       });
       // Append the race to the container using the template
-      cands = race.candidates;
       container.append(template(race));
     });
 
