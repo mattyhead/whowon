@@ -1,4 +1,4 @@
-var ENDPOINT = 'http://philadelphiavotes.fortuit.us/whowon/results.full.json',
+var ENDPOINT = '/whowon/results.full.json',
   INTERVAL = 900000;
 template = _.template($('#tmpl-race').html()),
 // implement terrible, terrible scope cludgees, and feel much shame.
@@ -23,9 +23,8 @@ var refresh = function() {
     p = data.parties;
     r = data.races;
     t = data.timestamp;
-    city = data.city['results'];
-    console.log('votes', v, 'candidates', c, 'desc', d, 'parties', p, 'races', r, 'timestamp', t);
 
+    //console.log( /*'votes', v, 'candidates', c, 'desc', d, 'parties', p,*/ 'races', r /*, 'timestamp', t*/ );
     delete data.votes['00'];
 
     partyStyle = function(s) {
@@ -43,8 +42,17 @@ var refresh = function() {
     };
 
     // Clear the container
-    var container = $('#main');
-    container.empty();
+    var $container = $('#main'),
+      $menu = $('#menu'),
+      //$topnav = $('#topnav'),
+      $bottomnav = $('#bottomnav'),
+      i = 0;
+    $container.empty();
+    $menu.empty();
+    for (race in r) {
+      $menu.append('<li><a href="#' + r[race] + '">' + r[race] + '</a></li>');
+    }
+    $bottomnav.attr('href', '#' + r[race - 3]);
 
     // For each city-level race
     [].forEach.call(data.city['results'], function(race) {
@@ -53,17 +61,17 @@ var refresh = function() {
         return -candidate.percentage;
       });
       // Append the race to the container using the template
-      container.append(template(race));
+      $container.append(template(race));
     });
 
     // Set next refresh
 
     timeToRefresh = INTERVAL || new Date(data.nextrun) - new Date() + 1000;
-    //console.log(timeToRefresh, data.timestamp);
     window.setTimeout(refresh, timeToRefresh);
 
     // let's tweak foundation in a casually kludgy way
     window.setTimeout(100, $(document).foundation('reflow'));
+
   });
 };
 
