@@ -1,4 +1,4 @@
-var ENDPOINT = '/whowon/results.full.json',
+var ENDPOINT = '/whowon/results.json',
   INTERVAL = 900000;
 template = _.template($('#tmpl-race').html()),
 // implement terrible, terrible scope cludgees, and feel much shame.
