@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <title>Who Won Philly??</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.1.6/nprogress.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/foundation/5.5.3/css/foundation.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.1.6/nprogress.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <link href='http://fonts.googleapis.com/css?family=Oxygen:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Oxygen:400,700' rel='stylesheet' type='text/css'>
     <meta property="og:title" content="Who Won Philly | A Code for Philly Project"/>
     <meta property="og:url" content="//www.philadelphiavotes.com/whowon"/>
     <meta property="og:site_name" content="Who Won Philly"/>
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://www.philadelphiavotes.com/whowon/img/og-image.png"/>
-    <link rel="image_src" href="https://www.philadelphiavotes.com/whowon/img/og-image.png"/>
+    <meta property="og:image" content="//www.philadelphiavotes.com/whowon/img/og-image.png"/>
+    <link rel="image_src" href="//www.philadelphiavotes.com/whowon/img/og-image.png"/>
     <meta property="og:description" content="Tracking real time election results in Philadelphia" />
     <meta name="twitter:card" content="photo" />
     <meta name="twitter:site" content="@CodeforPhilly" />
@@ -29,32 +29,24 @@
     '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-MNFWVZ');</script>
     <!-- End Google Tag Manager -->
-    <nav class="top-bar" data-topbar role="navigation">
-
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-      <li class="active"><a href="#">Top</a></li>
-      <li class="has-dropdown">
-        <a href="#">Jump to Race</a>
-        <ul id="menu-dropdown" class="dropdown">
-        </ul>
-      </li>
-    </ul>
-  </section>
-</nav>
     <div class="row">
+    <p id="top">Attractive election results developed by <a href="http://codeforphilly.com" target="_blank">CodeForPhilly</a>.<br>Results are refreshed automatically.</p>
       <div class="large-12 columns">
-        <p>Attractive election results, built at <a href="http://codeforphilly.org" target="_other_site">Code for Philly</a>. Originally at <a href="http://www.whowonphilly.com" target="_other_site">WhoWonPhilly.com</a>.</p>
-        <p>Automatically refreshes every 15 minutes from <a href="http://phillyelectionresults.com"  target="_other_site">phillyelectionresults.com</a>.</p>
+      <nav id="navidad" class="fixed-rightish">
+        <a id="topnav" class="abtn" href="#top">&#8679;</a>
+        <a href="#" class="abtn" data-dropdown="menu" data-options="is_hover:true; hover_timeout:5000">Jump to race</a>
+        <ul id="menu" class="f-dropdown" data-dropdown-content>
+        </ul>
+        <a id="bottomnav" class="abtn" href="">&#8681;</a>
+      </nav>
         <div>
-        <ul class="medium-block-grid-2" id="main"></ul>
+        <ul class="medium-block-grid-2" id="main"><li id="top"></li></ul>
       </div>
     </div>
   </div>
   <script type="text/template" id="tmpl-race" defer>
   <li class="large-12 columns race party-<%= partyStyle(party) %>">
-    <h2><%= r[race] %></h2>
+    <h2 id="<%= r[race] %>"><%= r[race] %></h2>
     <div class="chart header">
       <p><%= progress %>% Precincts Completed</p>
       <div style="width: <%= progress %>%"><%= progress %>% Precincts Completed</div>
@@ -66,7 +58,7 @@
         <th>Candidate</th>
         <th class="right">Votes</th>
         <% for(var i = 0; i < candidates.length; i++) {%>
-        <tr>
+        <tr id="<%= c[candidates[i].name] %>">
           <td><%= c[candidates[i].name] %></td>
           <td class="righ"><%= candidates[i].votes %></td>
         </tr>
@@ -101,9 +93,9 @@
       </span>
       <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+    <script src="//cdn.jsdelivr.net/foundation/5.5.3/js/vendor/jquery.js"></script>
+    <script src="//cdn.jsdelivr.net/foundation/5.5.3/js/vendor/modernizr.js"></script>
+    <script src="//cdn.jsdelivr.net/foundation/5.5.3/js/foundation.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.1.6/nprogress.min.js"></script>
     <script src="js/main.js"></script>
