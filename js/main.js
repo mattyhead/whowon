@@ -52,7 +52,7 @@ var refresh = function() {
     for (race in r) {
       $menu.append('<li><a href="#' + r[race] + '">' + r[race] + '</a></li>');
     }
-    $bottomnav.attr('href', '#' + r[race - 3]);
+    $bottomnav.attr('href', '#' + r[race]);
 
     // For each city-level race
     [].forEach.call(data.city['results'], function(race) {
