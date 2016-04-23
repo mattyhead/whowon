@@ -44,14 +44,16 @@ var refresh = function() {
     // Clear the container
     var $container = $('#main'),
       $menu = $('#menu'),
+      menuContent = '',
       //$topnav = $('#topnav'),
       $bottomnav = $('#bottomnav'),
       i = 0;
     $container.empty();
     $menu.empty();
     for (race in r) {
-      $menu.append('<li><a href="#' + r[race] + '">' + r[race] + '</a></li>');
+      menuContent += '<li><a href="#' + r[race] + '">' + r[race] + '</a></li>';
     }
+    $menu.append(menuContent);
     $bottomnav.attr('href', '#' + r[race]);
 
     // For each city-level race
