@@ -16,12 +16,14 @@ var refresh = function() {
       candidate.percentage = parseFloat(candidate.percentage);
     });
 
-    // data indexes
+    // data
     v = data.votes;
+    //  indexes
     c = data.candidates;
     d = data.desc;
     p = data.parties;
     r = data.races;
+    // might do something based on timestamp eventually
     t = data.timestamp;
 
     //console.log( /*'votes', v, 'candidates', c, 'desc', d, 'parties', p,*/ 'races', r /*, 'timestamp', t*/ );
@@ -73,6 +75,8 @@ var refresh = function() {
 
     // let's tweak foundation in a casually kludgy way
     window.setTimeout(100, $(document).foundation('reflow'));
+    // maybe just do this?
+    //    return function() {$(document).foundation('reflow')};
 
   });
 };
